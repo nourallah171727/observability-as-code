@@ -36,7 +36,8 @@ Now, we use our repo to generate dashboards in the Grafana UI!(you can visited o
 ```./gradlew run``` 
 This command interacts via HTTP with the live Grafana instance.  
 ⚠️ Please check whether the command format works for your shell and be sure to set the environment variables before executing ./gradlew run.  
-If you see generated dashboards under Grafana UI → Dashboards, the setup was successful! ✅  
+If you see generated dashboards under Grafana UI → Dashboards, the setup was successful! ✅
+
 You don't know how to create a Grafana API Token ?:  
 1) Open the Grafana UI and click the Grafana logo in the top left corner.  
 2) Navigate to Administration → Users and Access → Service Accounts.  
