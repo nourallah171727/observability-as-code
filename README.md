@@ -118,6 +118,6 @@ this is handled through DashboardPublisher which does the iteration adn uses Gra
 
 - This approach assumes UI-based edits in Grafana are disabled. Otherwise, the state may diverge from code.
 - In production, direct pushes to `main` should be restricted to avoid unreviewed dashboard changes.
-- the gradle run command should be only executed on a merge to main ! (no possibilty for manual runing the code just like in this demo!)
+- the gradle run command should be only executed on a merge to main ! (no possibilty for running the code just like in this demo allows!)
 - A useful extension would be automated tests verifying whether dashboards were created/updated/deleted correctly via the Grafana API.
 - a problem with directly inheriting from concrete classes in the "elegant" way I showed you , is that it can lead to violating the Liskov subtitution principle , since we can do CategoryADashboard extends CategoryBDashboard just because for NOW they share a lot of structure! but still I think it's a blazing fast way to reuse components. I am happy to discuss other approaches :)
