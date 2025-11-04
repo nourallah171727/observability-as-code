@@ -22,14 +22,14 @@ example for bash users:
 "export GRAFANA_URL="http://localhost:3000"
 export GRAFANA_API_TOKEN=<the_api_token>
 ./gradlew run"
-- (the keyword export is bash specific , be sure to use the one which works for you)
+- (be sure to use the keywords that work for your shell e.g do not use export on windows)
 ## Idea explanation
-the Idea is based on a Restful interaction with Grafana instance
-in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.
-(I added some DummyDashboards for users to experiment with updating , adding and deleting)
-The most important function in the interface is the "Dashboard build();" function that every Dashbboard must provide if it wants to be persisted to Grafana.
-Create:
-if you wanna create a Dashboard , just add a Dashboard class with a UID you want .
+-the Idea is based on a Restful interaction with Grafana instance.
+-in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.  
+(I added some DummyDashboards for users to experiment with updating , adding and deleting)  
+The most important function in the interface is the "Dashboard build();"  that every Dashbboard must provide if it wants to be persisted to Grafana.
+- Create:
+  if you wanna create a Dashboard , just add a Dashboard class with a UID you want .
 Example:
 ```java
 public class CpuUsageDashboard implements DashboardDefinition {
