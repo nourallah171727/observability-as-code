@@ -133,9 +133,9 @@ This is handled through DashboardPublisher, which performs the iteration, and Gr
 - Classes are JSONified.
 - Dashboards are deployed to Grafana through ./gradlew run.
 ## Limitations
-This approach assumes UI-based edits in Grafana are disabled. Otherwise, the state may diverge from the code.  
-In production, direct pushes to main should be restricted to avoid unreviewed dashboard changes.  
-The gradlew run command should only be executed on a merge to main (unlike in this demo, where manual runs are allowed).  
-A useful extension would be automated tests verifying whether dashboards were created/updated/deleted correctly via the Grafana API.  
-A potential issue with directly inheriting from concrete classes in the “elegant” way shown is that it can violate the Liskov Substitution Principle, e.g., CategoryADashboard extending CategoryBDashboard simply because they currently share structure.  
+- This approach assumes UI-based edits in Grafana are disabled. Otherwise, the state may diverge from the code.  
+- In production, direct pushes to main should be restricted to avoid unreviewed dashboard changes.  
+- The gradlew run command should only be executed on a merge to main (unlike in this demo, where manual runs are allowed).  
+- A useful extension would be automated tests verifying whether dashboards were created/updated/deleted correctly via the Grafana API.  
+- A potential issue with directly inheriting from concrete classes in the “elegant” way shown is that it can violate the Liskov Substitution Principle, e.g., CategoryADashboard extending CategoryBDashboard simply because they currently share structure.
 However, it remains a blazing-fast way to reuse components. I’m happy to discuss other approaches. 😄
