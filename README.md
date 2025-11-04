@@ -6,7 +6,7 @@ A java-based tool to programmatically create , update , delete and reuse panels/
 - Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.
 - Integrates smoothly with unit testing and build pipelines.
 ## Setup Overview
-!!!Download Docker and JDK 17+ if not already  
+!!! Download Docker and JDK 17+ if not already  
 ENVIRONMENT :
 - please use the forked github repo as a running env: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts
 - !!! the running environment repo (the forked one) and the one which contains java code (this one) are totally different repositories! you will be using both simultaneously.
@@ -100,7 +100,7 @@ public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard{
     }
 }
 ```
-no need to redefine every attribute , just modify the very few attributes you want to be modified!
+no need to redefine every attribute , just modify the very few attributes you want to be modified!  
 final:  
 after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run.  
 Again do not forget to plugin the env varibales before!  
