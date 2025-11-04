@@ -7,7 +7,7 @@ A java-based tool to programmatically create , update , delete and reuse panels/
 - Integrates smoothly with unit testing and build pipelines.
 ## Setup
 - please use this github repo that I forked as a running env: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts
-- you can run the docker containers through : docker compose up
+- you can run the docker containers through : ```docker compose up```
 - this will create instances of grafana ,prometheus and loki
 - you can add testdata to already given dashboards in this repo through
 - 1: ```cd testdata ```
