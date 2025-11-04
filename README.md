@@ -16,7 +16,7 @@ The running environment repo (the forked one) and the one containing the Java co
 This will create instances of:
 Grafana (port 3000),Prometheus,Loki (Please modify the docker-compose.yml file in the forked repo if any port is busy.)
 - You can add test data to visualize later by running:  
-```cd testdata  ```
+```cd testdata  ```  
 ```k6 run 1.cpu-usage.js   # in one terminal```  
 ```k6 run 2.send-logs.js   # in another terminal```
 
