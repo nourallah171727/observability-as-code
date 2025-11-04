@@ -31,7 +31,7 @@ example for zsh users:
 - (be sure to use the keywords that work for your shell e.g do not use export on windows)
 - if you do not know how to create an API token:
   1) open UI and press grafana's logo on top left
-  2) chooe Administration -> Users and access ->Sevice accounts
+  2) choose Administration -> Users and access ->Sevice accounts
   3) add a service name with whatever name you want but ensure it has admin role
   4) press "add a service account token" and copy the token grafana gives you when you press generate
   5) please be sure to store the token somewhere , otherwise you might want to delete the token u created and recreate another
