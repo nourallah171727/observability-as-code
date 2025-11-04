@@ -11,7 +11,7 @@ Some keywords change from one shell to another; I will try to point them out. Al
 - Please use the forked GitHub repo as the running environment: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
 The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.
 - Run the Docker containers using:  
-```docker compose up```  
+```docker compose up```
 (Execute this command inside the forked repo.)
 This will create instances of:
 Grafana (port 3000),Prometheus,Loki (Please modify the docker-compose.yml file in the forked repo if any port is busy.)
