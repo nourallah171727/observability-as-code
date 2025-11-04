@@ -86,7 +86,7 @@ final:
 after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run
 All what ./gradlew run does is iterate over all dashboard classes that should be considered , JSONifies them and interacts with grafana directly via HTTP
 
-#proposition of a simple CI/CD pipeline:
+## proposition of a simple CI/CD pipeline:
 users would just create another branch
 update whatever dashboard classes they want
 run local tests
