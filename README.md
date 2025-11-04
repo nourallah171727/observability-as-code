@@ -104,10 +104,11 @@ no need to redefine every attribute , just modify the very few attributes you wa
 final:  
 after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run.  
 Again do not forget to plugin the env varibales before!  
-All what ./gradlew run does is iterate over all dashboard classes that should be considered , JSONifies them and interacts with grafana directly via HTTP
+All what ./gradlew run does is iterate over all dashboard classes that should be considered , JSONifies them and interacts with grafana directly via HTTP.  
+this is handled through DashboardPublisher which does the iteration adn uses GrafanaClient for HTTP communication.
 
 ## proposition of a simple CI/CD pipeline:
-- users would just create another branch
+- users would just create another branch diverging from main
 - update whatever dashboard classes they want
 - run local tests
 - do a pull request
