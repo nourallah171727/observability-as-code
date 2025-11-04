@@ -26,7 +26,7 @@ Loki
 ```k6 run 2.send-logs.js   # in another terminal```  
 2) GENERATING DASHBOARDS  
 After completing the environment setup, you will have running Grafana, Prometheus, and Loki instances.  
-Now, we use our repo to generate dashboards in the Grafana UI!  
+Now, we use our repo to generate dashboards in the Grafana UI!(you can visited on localhost on port 3000)
 - Clone this repository and navigate to its root:  
 ```git clone https://github.com/nourallah171727/observability-as-code.git```   
 ```cd observability-as-code```
