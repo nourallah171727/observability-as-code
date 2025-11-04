@@ -7,16 +7,13 @@ Through OOP, developers can easily reuse and extend existing dashboards — more
 Integrates smoothly with unit testing and build pipelines.  
 ## Setup Overview  
 requirements: Docker, JDK 17+, and k6 v1.3.0  
-⚠️ Some keywords change from one shell to another; I will try to point them out. All commands shown here are zsh/bash-based.  
-
-
-
+Some keywords change from one shell to another; I will try to point them out. All commands shown here are zsh/bash-based.  
 - Please use the forked GitHub repo as the running environment: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
 The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.
 - Run the Docker containers using:  
 ```docker compose up```  
-(Execute this command inside the forked repo.)  
-This will create instances of:  
+(Execute this command inside the forked repo.)
+This will create instances of:
 Grafana (port 3000),Prometheus,Loki (Please modify the docker-compose.yml file in the forked repo if any port is busy.)
 - You can add test data to visualize later by running:  
 ```cd testdata  ```
