@@ -1,53 +1,66 @@
-## Grafana dashboard publisher
-A java-based tool to programmatically create , update , delete and reuse panels/dashboards in a versionned and controlled way 
-## Benefits
-- Enables version control for dashboards, which Grafana's UI does not provide.
-- Leverages Java's strong typing and compiler checks for safer dashboard definitions.
-- Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.
-- Integrates smoothly with unit testing and build pipelines.
-## Setup Overview
-!!! Download Docker and JDK 17+ if not already  
-ENVIRONMENT :
-- please use the forked github repo as a running env: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts
-- !!! the running environment repo (the forked one) and the one which contains java code (this one) are totally different repositories! you will be using both simultaneously.
-- you can run the docker containers through : ```docker compose up``` on the forked repo
-- this will create instances of grafana(port 3000) ,prometheus and loki (please modify the docker compose file on forked repo if any port is busy)
-- you can add testdata to visualize them later through 
-- 1: ```cd testdata ```
-- 2: ```k6 run 1.cpu-usage.js ```on one terminal instance and
-  ```k6 run 2.send-logs.js``` on another if you want
-
-GENERATING DASHBOARDS:
-- after you did the env setup you will have running instances 
-- now we use our repo to generate dashboards to grafana UI!
-- be sure to clone this repo and to be at the root of the project
-
-- run ```./gradlew run``` on this repo ,which would interact via HTTP with the live grafana instance.
-- please be sure to plug in env variables before executing ```./gradlew run```
-example for zsh users:
-``` export GRAFANA_URL="http://localhost:3000" ```
-``` export GRAFANA_API_TOKEN="<the_api_token>" ```
-```./gradlew run```
-- (be sure to use the keywords that work for your shell e.g do not use export on windows)
-- if you do not know how to create an API token:
-  1) open UI and press grafana's logo on top left
-  2) choose Administration -> Users and access ->Sevice accounts
-  3) add a service name with whatever name you want but ensure it has admin role
-  4) press "add a service account token" and copy the token grafana gives you when you press generate
-  5) please be sure to store the token somewhere ,because you might reuse it on every execution , otherwise you might want to delete the token you created and recreate another
-## Idea explanation
-- the Idea is based on a Restful interaction with Grafana instance.
-- in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.  
-(I added some DummyDashboards for users to experiment with updating , adding and deleting)  
-The most important function in the interface is the "Dashboard build();", that every Dashbboard must provide if it wants to be persisted to Grafana.
-- CREATE:
-  - if you want to create a Dashboard , just add a Dashboard class with a UID you want ,under the /dashboards package
-  - be sure to implement the DashboardDefinition interface !
+Grafana Dashboard Publisher
+A Java-based tool to programmatically create, update, delete, and reuse panels/dashboards in a versioned and controlled way.
+Benefits
+Enables version control for dashboards, which Grafana's UI does not provide.
+Leverages Java's strong typing and compiler checks for safer dashboard definitions.
+Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.
+Integrates smoothly with unit testing and build pipelines.
+Setup Overview
+⚠️ Some keywords change from one shell to another; I will try to point them out. All commands shown here are zsh/bash-based.
+⚠️ Download Docker, JDK 17+, and k6 v1.3.0 if not already downloaded.
+ENVIRONMENT
+Please use the forked GitHub repo as the running environment:
+👉 https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts
+⚠️ The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.
+Run the Docker containers using:
+docker compose up
+(Execute this command inside the forked repo.)
+This will create instances of:
+Grafana (port 3000)
+Prometheus
+Loki
+(Please modify the docker-compose.yml file in the forked repo if any port is busy.)
+You can add test data to visualize later by running:
+cd testdata
+k6 run 1.cpu-usage.js   # in one terminal
+k6 run 2.send-logs.js   # in another terminal
+GENERATING DASHBOARDS
+After completing the environment setup, you will have running Grafana, Prometheus, and Loki instances.
+Now, we use our repo to generate dashboards in the Grafana UI!
+Clone this repository and navigate to its root:
+git clone https://github.com/nourallah171727/observability-as-code.git
+cd observability-as-code
+Run:
+./gradlew run
+This command interacts via HTTP with the live Grafana instance.
+⚠️ Please check whether the command format works for your shell.
+Be sure to set the environment variables before executing ./gradlew run.
+If you see generated dashboards under Grafana UI → Dashboards, the setup was successful! ✅
+Example for zsh/bash users:
+export GRAFANA_URL="http://localhost:3000"
+export GRAFANA_API_TOKEN="<the_api_token>"
+./gradlew run
+⚠️ Use the keywords that work for your shell (e.g., do not use export on Windows).
+Creating a Grafana API Token
+Open the Grafana UI and click the Grafana logo in the top left corner.
+Navigate to Administration → Users and Access → Service Accounts.
+Add a service account with any name you like, but ensure it has the Admin role.
+Press Add Service Account Token and copy the token Grafana provides when you press Generate.
+Store the token somewhere safe — you can reuse it for every execution. Otherwise, delete and recreate it when needed.
+Idea Explanation
+The idea is based on a RESTful interaction with a Grafana instance.
+In this demo, only dashboards under the package dashboards in /src that implement the DashboardDefinition interface are considered.
+(I added some dummy dashboards for users to experiment with updating, adding, and deleting.)
+The most important function in the interface is:
+Dashboard build();
+Every dashboard must implement this method to be persisted to Grafana.
+CREATE
+To create a dashboard, just add a dashboard class with a UID of your choice under the /dashboards package.
+Be sure to implement the DashboardDefinition interface!
 Example:
-```java
 public class CpuUsageDashboard implements DashboardDefinition {
     public Dashboard build() {
-        // 1️⃣ Define Prometheus datasource
+        // 1️⃣ Define Prometheus data source
         DataSourceRef prometheusRef = new PrometheusDataSourceRef();
 
         // 🔹 2. Create a time series panel for CPU usage
@@ -60,6 +73,7 @@ public class CpuUsageDashboard implements DashboardDefinition {
                                 .expr("cpu_usage")
                                 .legendFormat("{{instance}}")
                 );
+
         // 🔹 3. Build the dashboard
         Dashboard dashboard = new DashboardBuilder("CPU Usage Dashboard")
                 .uid("raw_cpu_usage_dash")
@@ -73,51 +87,53 @@ public class CpuUsageDashboard implements DashboardDefinition {
                 .timezone("browser")
                 .withPanel(panel)
                 .build();
+
         return dashboard;
     }
-    public String getUID(){
+
+    public String getUID() {
         return "raw_cpu_usage_dash";
     }
-  }
-```
-UPDATE:  
-if you want to update a dashboard please be sure to update existing classes , DO NOT ADD A CLASS WITH SAME UID!(only one of the dashboards with same UID would get randomly persisted)
-
-DELETE:  
-just delete the Dashboard class implementing DashboardDefinition from the dashboards package
-
-
-REUSE:  
-if you are a developer who wishes to reuse some already created class , I have a very elegant way of doing it for you!
-example:
-```java
-public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard{
-    public Dashboard build(){
-        Dashboard dashboard=super.build();
-        dashboard.uid="another_raw_cpu_dashboard";
-        dashboard.tags=List.of("elegant");
+}
+UPDATE
+If you want to update a dashboard, update the existing class.
+⚠️ Do not add another class with the same UID! (Only one of the dashboards with the same UID would get randomly persisted.)
+DELETE
+To delete a dashboard, just delete the class implementing DashboardDefinition from the /dashboards package.
+REUSE
+If you are a developer who wishes to reuse an already created class, there’s a very elegant way to do it!
+Example:
+public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard {
+    public Dashboard build() {
+        Dashboard dashboard = super.build();
+        dashboard.uid = "another_raw_cpu_dashboard";
+        dashboard.tags = List.of("elegant");
         return dashboard;
     }
 }
-```
-no need to redefine every attribute , just modify the very few attributes you want to be modified!  
-final:  
-after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run.  
-Again do not forget to plugin the env varibales before!  
-All what ./gradlew run does is iterate over all dashboard classes that should be considered , JSONifies them and interacts with grafana directly via HTTP.  
-this is handled through DashboardPublisher which does the iteration adn uses GrafanaClient for HTTP communication.
-
-## proposition of a simple CI/CD pipeline:
-- users would just create another branch diverging from main
-- update whatever dashboard classes they want
-- run local tests
-- do a pull request
-- ON MERGE TO MAIN: other unit tests are run , classes are JSONified and deployed to grafana through the magical ./gradlew run
-
-## Limitations
-
-- This approach assumes UI-based edits in Grafana are disabled. Otherwise, the state may diverge from code.
-- In production, direct pushes to `main` should be restricted to avoid unreviewed dashboard changes.
-- the gradle run command should be only executed on a merge to main ! (no possibilty for running the code just like in this demo allows!)
-- A useful extension would be automated tests verifying whether dashboards were created/updated/deleted correctly via the Grafana API.
-- a problem with directly inheriting from concrete classes in the "elegant" way I showed you , is that it can lead to violating the Liskov subtitution principle , since we can do CategoryADashboard extends CategoryBDashboard just because for NOW they share a lot of structure! but still I think it's a blazing fast way to reuse components. I am happy to discuss other approaches :)
+No need to redefine every attribute — just modify the few attributes you want to change.
+FINAL
+After performing all updates, creations, or deletions, run:
+./gradlew run
+⚠️ Don’t forget to set the environment variables before executing it!
+All that ./gradlew run does is:
+Iterate over all dashboard classes that should be considered,
+Convert them to JSON,
+And interact with Grafana directly via HTTP.
+This is handled through DashboardPublisher, which performs the iteration, and GrafanaClient, which manages HTTP communication.
+Proposition of a Simple CI/CD Pipeline
+Developers create a new branch diverging from main.
+Update whatever dashboard classes they want.
+Run local tests.
+Open a pull request.
+On merge to main:
+Unit tests run.
+Classes are JSONified.
+Dashboards are deployed to Grafana through ./gradlew run.
+Limitations
+This approach assumes UI-based edits in Grafana are disabled. Otherwise, the state may diverge from the code.
+In production, direct pushes to main should be restricted to avoid unreviewed dashboard changes.
+The gradlew run command should only be executed on a merge to main (unlike in this demo, where manual runs are allowed).
+A useful extension would be automated tests verifying whether dashboards were created/updated/deleted correctly via the Grafana API.
+A potential issue with directly inheriting from concrete classes in the “elegant” way shown is that it can violate the Liskov Substitution Principle, e.g., CategoryADashboard extending CategoryBDashboard simply because they currently share structure.
+However, it remains a blazing-fast way to reuse components. I’m happy to discuss other approaches. 😄
