@@ -16,13 +16,13 @@ A java-based tool to programmatically create , update , delete and reuse panels/
 
 
 
-after you did the setup and have running instances , the ./gradlew run on this repo would interact via HTTP with the live grafana instance.
-please be sure to plug in env variables before executing ./gradlew run
+- after you did the setup and have running instances , the ./gradlew run on this repo would interact via HTTP with the live grafana instance.
+- please be sure to plug in env variables before executing ./gradlew run
 example for bash users:
 "export GRAFANA_URL="http://localhost:3000"
 export GRAFANA_API_TOKEN=<the_api_token>
 ./gradlew run"
-(the keyword export is bash specific , be sure to use the one which works for you)
+- (the keyword export is bash specific , be sure to use the one which works for you)
 ## Idea explanation
 the Idea is based on a Restful interaction with Grafana instance
 in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.
