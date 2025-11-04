@@ -5,7 +5,7 @@ A java-based tool to programmatically create , update , delete and reuse panels/
 - Leverages Java's strong typing and compiler checks for safer dashboard definitions.
 - Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.
 - Integrates smoothly with unit testing and build pipelines.
-#Setup
+##Setup
 please use this github repo that I forked as a running env: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts
 you can run the docker containers through : docker compose up
 this will create instances of grafana ,prometheus and loki
@@ -19,7 +19,7 @@ please be sure to plug in env variables before executing ./gradlew run
 "export GRAFANA_URL="http://localhost:3000"
 export GRAFANA_API_TOKEN=<the_api_token>
 ./gradlew run"
-#Idea explanation
+##Idea explanation
 the Idea is based on a Restful interaction with Grafana instance
 in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.
 (I added some DummyDashboards for users to experiment with updating , adding and deleting)
@@ -27,7 +27,7 @@ The most important function in the interface is the "Dashboard build();" functio
 Create:
 if you wanna create a Dashboard , just add a Dashboard class with a UID you want .
 Example:
-'''java
+```java
 public class CpuUsageDashboard implements DashboardDefinition {
     public Dashboard build() {
         // 1️⃣ Define Prometheus datasource
@@ -61,7 +61,8 @@ public class CpuUsageDashboard implements DashboardDefinition {
     public String getUID(){
         return "raw_cpu_usage_dash";
     }
-}'''
+  }
+```
 update:
 if you want to update a dashboard please be sure to update existing classes , DO NOT ADD A CLASS WITH SAME UID!(only one of the dashboards with same UID would get persisted)
 
@@ -71,7 +72,7 @@ delete: just delete the Dashboard class impelemnting DashboardDefinition from th
 reuse:
 if you are a developer who whishes to reuse some already created class , I have a very elegant way of doing it for you!
 example:
-'''java
+```java
 public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard{
     public Dashboard build(){
         Dashboard dashboard=super.build();
@@ -80,7 +81,7 @@ public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard{
         return dashboard;
     }
 }
-'''
+```
 final:
 after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run
 All what ./gradlew run does is iterate over all dashboard classes that should be considered , JSONifies them and interacts with grafana directly via HTTP
