@@ -6,6 +6,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GrafanaClient {
     private final String grafanaUrl;
@@ -53,5 +55,30 @@ public class GrafanaClient {
         } else {
             System.err.println("Failed to delete " + uid + ": " + response.body());
         }
+    }
+
+    public List<String> listDashboardUIDs() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(grafanaUrl + "/api/search?query=&type=dash-db"))
+                .header("Authorization", "Bearer " + apiToken)
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Failed to list dashboards: " + response.body());
+        }
+
+        // Parse JSON (simple regex or lightweight parser)
+        List<String> uids = new ArrayList<>();
+        // each element looks like: {"uid":"raw_cpu_usage_dash", "title":"CPU Usage", ...}
+        for (String part : response.body().split("\"uid\":\"")) {
+            if (part.contains("\"")) {
+                String uid = part.substring(0, part.indexOf("\"")).replaceAll("[\\[{]", "");
+                if (!uid.isEmpty()) uids.add(uid);
+            }
+        }
+        return uids;
     }
 }

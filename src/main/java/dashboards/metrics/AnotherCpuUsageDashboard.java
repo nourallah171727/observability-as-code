@@ -9,7 +9,7 @@ import datasource.PrometheusDataSourceRef;
 import interfaces.DashboardDefinition;
 import query.PrometheusDataQueryBuilder;
 
-public class AnotherCPUDashboard implements DashboardDefinition {
+public class AnotherCpuUsageDashboard implements DashboardDefinition {
     public Dashboard build() {
         // 1️⃣ Define Prometheus datasource
         DataSourceRef prometheusRef = new PrometheusDataSourceRef();
@@ -26,8 +26,8 @@ public class AnotherCPUDashboard implements DashboardDefinition {
                 );
         // 🔹 3. Build the dashboard
         Dashboard dashboard = new DashboardBuilder("CPU Usage Dashboard")
-                .uid("another_raw_cpu_usage_dash" )
-                .tags(java.util.List.of("cpu", "prometheus","another tag"))
+                .uid("another_raw_cpu_usage_dash")
+                .tags(java.util.List.of("cpu", "prometheus","some tag"))
                 .refresh("5s")
                 .time(
                         new DashboardDashboardTimeBuilder()
