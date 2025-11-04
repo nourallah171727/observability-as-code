@@ -10,9 +10,8 @@ Integrates smoothly with unit testing and build pipelines.
 ⚠️ Download Docker, JDK 17+, and k6 v1.3.0 if not already downloaded.  
 
 
-Please use the forked GitHub repo as the running environment:  
-👉 https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
-⚠️ The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.  
+Please use the forked GitHub repo as the running environment: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
+⚠️ The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.
 - Run the Docker containers using:  
 ```docker compose up```  
 (Execute this command inside the forked repo.)  
