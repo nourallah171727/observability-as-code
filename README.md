@@ -21,7 +21,7 @@ Grafana (port 3000),Prometheus,Loki (Please modify the docker-compose.yml file i
 ```k6 run 2.send-logs.js   # in another terminal```
 
 
-Now, we use our repo to generate dashboards in the Grafana UI!(you can visited on localhost on port 3000)
+Now, we use our repo to generate dashboards in the Grafana UI!(you can visit it on localhost on port 3000)
 - Clone this repository and navigate to its root:  
 ```git clone https://github.com/nourallah171727/observability-as-code.git```   
 ```cd observability-as-code```
