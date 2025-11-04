@@ -6,12 +6,13 @@ Leverages Java's strong typing and compiler checks for safer dashboard definitio
 Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.  
 Integrates smoothly with unit testing and build pipelines.  
 ## Setup Overview  
+requirements: Docker, JDK 17+, and k6 v1.3.0
 ⚠️ Some keywords change from one shell to another; I will try to point them out. All commands shown here are zsh/bash-based.  
-⚠️ Download Docker, JDK 17+, and k6 v1.3.0 if not already downloaded.  
 
 
-Please use the forked GitHub repo as the running environment: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
-⚠️ The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.
+
+- Please use the forked GitHub repo as the running environment: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
+The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.
 - Run the Docker containers using:  
 ```docker compose up```  
 (Execute this command inside the forked repo.)  
@@ -40,7 +41,8 @@ You don't know how to create a Grafana API Token ?:
 2) Navigate to Administration → Users and Access → Service Accounts.  
 3) Add a service account with any name you like, but ensure it has the Admin role.  
 4) Press Add Service Account Token and copy the token Grafana provides when you press Generate.  
-5) Store the token somewhere safe — you can reuse it for every execution. Otherwise, delete and recreate it when needed.  
+5) Store the token somewhere safe — you can reuse it for every execution. Otherwise, delete and recreate it when needed.
+
 ## Idea Explanation  
 The idea is based on a RESTful interaction with a Grafana instance.  
 In this demo, only dashboards under the package dashboards in /src that implement the DashboardDefinition interface are considered.  
