@@ -29,7 +29,7 @@ Now, we use our repo to generate dashboards in the Grafana UI!(you can visit it 
 ```export GRAFANA_URL="http://localhost:3000"```  
 ```export GRAFANA_API_TOKEN="<the_api_token>"``` 
 ```./gradlew run```  
-The gradle command interacts via HTTP with the live Grafana instance.  
+The gradle command will interact via HTTP with the live Grafana instance.  
 ⚠️ Please check whether the command format works for your shell and be sure to set the environment variables before executing ./gradlew run.  
 If you see generated dashboards under Grafana UI → Dashboards, the setup was successful! ✅
 
