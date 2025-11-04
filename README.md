@@ -51,7 +51,7 @@ In this demo, only dashboards under the package dashboards in /src that implemen
 The most important function in the interface is:  
 ```Dashboard build();```  
 Every dashboard must implement this method to be persisted to Grafana.  
-CREATE  
+CREATE:  
 To create a dashboard, just add a dashboard class with a UID of your choice under the /dashboards package.  
 Be sure to implement the DashboardDefinition interface!  
 Example:  
@@ -94,12 +94,12 @@ Example:
     }
 }
 ```
-UPDATE  
+UPDATE:  
 If you want to update a dashboard, update the existing class.  
 ⚠️ Do not add another class with the same UID! (Only one of the dashboards with the same UID would get randomly persisted.)  
-DELETE  
+DELETE:  
 To delete a dashboard, just delete the class implementing DashboardDefinition from the /dashboards package.  
-REUSE  
+REUSE:  
 If you are a developer who wishes to reuse an already created class, there’s a very elegant way to do it!  
 Example:
 ``` java
@@ -113,7 +113,7 @@ public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard {
 }
 ```
 No need to redefine every attribute — just modify the few attributes you want to change.  
-FINAL  
+FINAL:  
 After performing all updates, creations, or deletions, run:  
 ```./gradlew run```  
 ⚠️ Don’t forget to set the environment variables before executing it!  
