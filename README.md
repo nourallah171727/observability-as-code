@@ -34,7 +34,7 @@ example for zsh users:
   2) choose Administration -> Users and access ->Sevice accounts
   3) add a service name with whatever name you want but ensure it has admin role
   4) press "add a service account token" and copy the token grafana gives you when you press generate
-  5) please be sure to store the token somewhere , otherwise you might want to delete the token u created and recreate another
+  5) please be sure to store the token somewhere ,because you might reuse it on every execution , otherwise you might want to delete the token you created and recreate another
 ## Idea explanation
 - the Idea is based on a Restful interaction with Grafana instance.
 - in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.  
