@@ -24,11 +24,11 @@ export GRAFANA_API_TOKEN=<the_api_token>
 ./gradlew run"
 - (be sure to use the keywords that work for your shell e.g do not use export on windows)
 ## Idea explanation
--the Idea is based on a Restful interaction with Grafana instance.
--in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.  
+- the Idea is based on a Restful interaction with Grafana instance.
+- in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.  
 (I added some DummyDashboards for users to experiment with updating , adding and deleting)  
 The most important function in the interface is the "Dashboard build();"  that every Dashbboard must provide if it wants to be persisted to Grafana.
-- Create:
+- CREATE:
   if you wanna create a Dashboard , just add a Dashboard class with a UID you want .
 Example:
 ```java
@@ -67,13 +67,14 @@ public class CpuUsageDashboard implements DashboardDefinition {
     }
   }
 ```
-update:
+UPDATE:  
 if you want to update a dashboard please be sure to update existing classes , DO NOT ADD A CLASS WITH SAME UID!(only one of the dashboards with same UID would get persisted)
 
-delete: just delete the Dashboard class impelemnting DashboardDefinition from the dashboards package
+DELETE:  
+just delete the Dashboard class impelemnting DashboardDefinition from the dashboards package
 
 
-reuse:
+REUSE:  
 if you are a developer who wishes to reuse some already created class , I have a very elegant way of doing it for you!
 example:
 ```java
@@ -86,16 +87,16 @@ public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard{
     }
 }
 ```
-final:
-after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run
+final:  
+after doing all updates / creations / deletions you want , be sure to run the command ./gradlew run.  
 All what ./gradlew run does is iterate over all dashboard classes that should be considered , JSONifies them and interacts with grafana directly via HTTP
 
 ## proposition of a simple CI/CD pipeline:
-users would just create another branch
-update whatever dashboard classes they want
-run local tests
-does a pull request
-ON MERGE TO MAIN: other unit tests are run , classes are JSONified and deployed to grafana through the magical ./gradlew run
+- users would just create another branch
+- update whatever dashboard classes they want
+- run local tests
+- does a pull request
+- ON MERGE TO MAIN: other unit tests are run , classes are JSONified and deployed to grafana through the magical ./gradlew run
 
 ## Limitations
 
