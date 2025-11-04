@@ -117,6 +117,7 @@ FINAL:
 After performing all updates, creations, or deletions, run:  
 ```./gradlew run```  
 ⚠️ Don’t forget to set the environment variables before executing it!  
+
 All that ./gradlew run does is:  
 - Iterate over all dashboard classes that should be considered,  
 - Convert them to JSON,  
