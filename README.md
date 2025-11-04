@@ -1,11 +1,11 @@
-#Grafana dashboard publisher
+## Grafana dashboard publisher
 A java-based tool to programmatically create , update , delete and reuse panels/dashboards in a versionned and controlled way 
 ## Benefits
 - Enables version control for dashboards, which Grafana's UI does not provide.
 - Leverages Java's strong typing and compiler checks for safer dashboard definitions.
 - Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.
 - Integrates smoothly with unit testing and build pipelines.
-##Setup
+## Setup
 please use this github repo that I forked as a running env: https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts
 you can run the docker containers through : docker compose up
 this will create instances of grafana ,prometheus and loki
@@ -19,7 +19,7 @@ please be sure to plug in env variables before executing ./gradlew run
 "export GRAFANA_URL="http://localhost:3000"
 export GRAFANA_API_TOKEN=<the_api_token>
 ./gradlew run"
-##Idea explanation
+## Idea explanation
 the Idea is based on a Restful interaction with Grafana instance
 in this demo , only dashboards under package "dashboards" in the /src which implement the DashboardDefinition interface would be considered.
 (I added some DummyDashboards for users to experiment with updating , adding and deleting)
