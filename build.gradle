@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'application'   // adds the "run" task
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.grafana:grafana-foundation-sdk:11.6.0-1759917919"
+    implementation 'org.reflections:reflections:0.10.2'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+application {
+    mainClass = 'DashboardPublisher'
+}
+
+test {
+    useJUnitPlatform()
+}
