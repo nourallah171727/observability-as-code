@@ -70,7 +70,7 @@ delete: just delete the Dashboard class impelemnting DashboardDefinition from th
 
 
 reuse:
-if you are a developer who whishes to reuse some already created class , I have a very elegant way of doing it for you!
+if you are a developer who wishes to reuse some already created class , I have a very elegant way of doing it for you!
 example:
 ```java
 public class ElegantAnotherCpuUsageDashboard extends CpuUsageDashboard{
