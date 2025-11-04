@@ -8,11 +8,11 @@ Integrates smoothly with unit testing and build pipelines.
 ## Setup Overview  
 ⚠️ Some keywords change from one shell to another; I will try to point them out. All commands shown here are zsh/bash-based.  
 ⚠️ Download Docker, JDK 17+, and k6 v1.3.0 if not already downloaded.  
-ENVIRONMENT  
+1) ENVIRONMENT  
 Please use the forked GitHub repo as the running environment:  
 👉 https://github.com/nourallah171727/demo-prometheus-and-grafana-alerts  
 ⚠️ The running environment repo (the forked one) and the one containing the Java code (this one) are two different repositories! You will be using both simultaneously.  
-Run the Docker containers using:  
+- Run the Docker containers using:  
 ```docker compose up```  
 (Execute this command inside the forked repo.)  
 This will create instances of:  
@@ -20,28 +20,24 @@ Grafana (port 3000)
 Prometheus  
 Loki  
 (Please modify the docker-compose.yml file in the forked repo if any port is busy.)  
-You can add test data to visualize later by running:  
+- You can add test data to visualize later by running:  
 ```cd testdata  ```
 ```k6 run 1.cpu-usage.js   # in one terminal```  
 ```k6 run 2.send-logs.js   # in another terminal```  
-GENERATING DASHBOARDS  
+2) GENERATING DASHBOARDS  
 After completing the environment setup, you will have running Grafana, Prometheus, and Loki instances.  
 Now, we use our repo to generate dashboards in the Grafana UI!  
-Clone this repository and navigate to its root:  
+- Clone this repository and navigate to its root:  
 ```git clone https://github.com/nourallah171727/observability-as-code.git```   
-```cd observability-as-code```  
-Run:  
-```./gradlew run```  
-This command interacts via HTTP with the live Grafana instance.  
-⚠️ Please check whether the command format works for your shell.  
-Be sure to set the environment variables before executing ./gradlew run.  
-If you see generated dashboards under Grafana UI → Dashboards, the setup was successful! ✅  
-Example for zsh/bash users:  
+```cd observability-as-code```
+- run the code of our repo . here is an example for zsh/bash users:
 ```export GRAFANA_URL="http://localhost:3000"```  
 ```export GRAFANA_API_TOKEN="<the_api_token>"``` 
-```./gradlew run```  
-⚠️ Use the keywords that work for your shell (e.g., do not use export on Windows).  
-Creating a Grafana API Token:  
+```./gradlew run``` 
+This command interacts via HTTP with the live Grafana instance.  
+⚠️ Please check whether the command format works for your shell and be sure to set the environment variables before executing ./gradlew run.  
+If you see generated dashboards under Grafana UI → Dashboards, the setup was successful! ✅  
+You don't know how to create a Grafana API Token ?:  
 1) Open the Grafana UI and click the Grafana logo in the top left corner.  
 2) Navigate to Administration → Users and Access → Service Accounts.  
 3) Add a service account with any name you like, but ensure it has the Admin role.  
