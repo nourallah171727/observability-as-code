@@ -10,12 +10,9 @@ A java-based tool to programmatically create , update , delete and reuse panels/
 - you can run the docker containers through : docker compose up
 - this will create instances of grafana ,prometheus and loki
 - you can add testdata to already given dashboards in this repo through
-- 1: ```bash
-      cd testdata ```
-- 2: ```bash
-      k6 run 1.cpu-usage.js ```on one terminal instance and
-  ```bash
-  k6 run 2.send-logs.js``` on another if you want
+- 1: ```cd testdata ```
+- 2: ```k6 run 1.cpu-usage.js ```on one terminal instance and
+  ```k6 run 2.send-logs.js``` on another if you want
 
 
 
