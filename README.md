@@ -5,6 +5,8 @@ Enables version control for dashboards, which Grafana's UI does not provide.
 Leverages Java's strong typing and compiler checks for safer dashboard definitions.  
 Through OOP, developers can easily reuse and extend existing dashboards — more powerfully than with Jsonnet.  
 Integrates smoothly with unit testing and build pipelines.  
+## JSON file location
+you can find the raw JSON file under src/cpujson.json
 ## Setup Overview  
 requirements: Docker, JDK 17+, and k6 v1.3.0  
 Some keywords change from one shell to another; I will try to point them out. All commands shown here are zsh/bash-based.  
