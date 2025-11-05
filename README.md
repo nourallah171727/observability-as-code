@@ -47,7 +47,7 @@ You don't know how to create a Grafana API Token ?:
 The idea is based on a RESTful interaction with a Grafana instance.  
 In this demo, only dashboards under the package dashboards in /src that implement the DashboardDefinition interface are considered.  
 (I added some dummy dashboards for users to experiment with updating, adding, and deleting.)  
-The most important function in the interface is:  
+The function of the interface is:  
 ```Dashboard build();```  
 Every dashboard must implement this method to be persisted to Grafana.  
 CREATE:  
