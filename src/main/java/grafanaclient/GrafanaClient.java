@@ -65,11 +65,9 @@ public class GrafanaClient {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
         if (response.statusCode() != 200) {
             throw new RuntimeException("Failed to list dashboards: " + response.body());
         }
-
         // Parse JSON (simple regex or lightweight parser)
         List<String> uids = new ArrayList<>();
         // each element looks like: {"uid":"raw_cpu_usage_dash", "title":"CPU Usage", ...}
