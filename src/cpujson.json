@@ -1,0 +1,43 @@
+{
+"uid" : "raw_cpu_usage_dash",
+"title" : "CPU Usage Dashboard",
+"tags" : [ "cpu", "prometheus" ],
+"timezone" : "browser",
+"editable" : true,
+"graphTooltip" : 0,
+"time" : {
+"from" : "now-15m",
+"to" : "now"
+},
+"fiscalYearStartMonth" : 0,
+"refresh" : "5s",
+"schemaVersion" : 41,
+"panels" : [ {
+"type" : "timeseries",
+"targets" : [ {
+"expr" : "cpu_usage",
+"legendFormat" : "{{instance}}",
+"refId" : ""
+} ],
+"title" : "CPU Usage",
+"transparent" : false,
+"datasource" : {
+"type" : "prometheus",
+"uid" : "DS_PROMETHEUS_UID"
+},
+"gridPos" : {
+"h" : 9,
+"w" : 12,
+"x" : 0,
+"y" : 0
+},
+"fieldConfig" : {
+"defaults" : {
+"unit" : "percent"
+},
+"overrides" : [ ]
+}
+} ],
+"templating" : { },
+"annotations" : { }
+}
