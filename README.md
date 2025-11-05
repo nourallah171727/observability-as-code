@@ -17,6 +17,7 @@ The running environment repo (the forked one) and the one containing the Java co
 (Execute this command inside the forked repo.)
 This will create instances of:
 Grafana (port 3000),Prometheus,Loki (Please modify the docker-compose.yml file in the forked repo if any port is busy.)
+- Optional: for simplicty ,you can just sign up in local grafanaUI through username: admin , password : admin 
 - You can add test data to visualize later by running:  
 ```cd testdata  ```  
 ```k6 run 1.cpu-usage.js   # in one terminal```  
