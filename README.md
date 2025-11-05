@@ -17,7 +17,7 @@ The running environment repo (the forked one) and the one containing the Java co
 (Execute this command inside the forked repo.)
 This will create instances of:
 Grafana (port 3000),Prometheus,Loki (Please modify the docker-compose.yml file in the forked repo if any port is busy.)
-- Optional: for simplicty ,you can just sign up in local grafanaUI through username: admin , password : admin 
+- Optional: for simplicity ,you can just sign up in local grafanaUI through username: admin , password : admin 
 - You can add test data to visualize later by running:  
 ```cd testdata  ```  
 ```k6 run 1.cpu-usage.js   # in one terminal```  
@@ -136,6 +136,6 @@ This is handled through DashboardPublisher, which performs the iteration, and Gr
 - In production, direct pushes to main should be restricted to avoid unreviewed dashboard changes.  
 - The gradlew run command should only be executed on a merge to main (unlike in this demo, where manual runs are allowed).  
 - A useful extension would be automated tests verifying whether dashboards were created/updated/deleted correctly via the Grafana API.
-- demo also lacks real authentication and authorization mechanisms , and works under assumption that grafana always returns 2xx code responses
+- demo also lacks real authentication and authorization mechanisms ,and works under assumption that grafana always returns 2xx code responses
 - A potential issue with directly inheriting from concrete classes in the “elegant” way shown is that it can violate the Liskov Substitution Principle, e.g., CategoryADashboard extending CategoryBDashboard simply because they currently share structure.
 However, it remains a blazing-fast way to reuse components. I’m happy to discuss other approaches. 😄
