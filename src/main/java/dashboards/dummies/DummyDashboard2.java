@@ -1,4 +1,4 @@
-package dashboards.metrics;
+package dashboards.dummies;
 
 import com.grafana.foundation.dashboard.Dashboard;
 import dashboards.logs.LokiLogDashboard;
